@@ -1,0 +1,8 @@
+---
+# This playbook deploys the whole application stack in this site.
+# Vagrant runs this playbook as root
+
+- name: with yourself
+  hosts: all
+  roles:
+    - { role: chrisjohnson00.jackett, tags: ["jackett"]}
