@@ -1,0 +1,13 @@
+---
+# handlers file for chrisjohnson00.jacket
+
+- name: jackett_reload_systemd
+  command: systemctl daemon-reload
+  become: yes
+
+- name: restart_jackett
+  service:
+    name: jackett
+    state: restarted
+    enabled: yes
+  become: yes

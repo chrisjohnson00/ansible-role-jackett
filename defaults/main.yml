@@ -1,0 +1,6 @@
+---
+# defaults file for chrisjohnson00.jacket
+
+chrisjohnson00_jackett_packages: ["mono-devel","libcurl4-openssl-dev","ca-certificates-mono"]
+chrisjohnson00_jackett_version: "v0.7.1499"
+chrisjohnson00_jackett_user: "jackett"
