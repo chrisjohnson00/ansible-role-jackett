@@ -1,38 +1,41 @@
+[![Build Status](https://travis-ci.org/chrisjohnson00/ansible-role-jackett.svg?branch=master)](https://travis-ci.org/chrisjohnson00/ansible-role-jackett)
+
 Role Name
 =========
 
-A brief description of the role goes here.
+This is an ansible role to install [**Jackett**][1] on Ubuntu 16.04
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+The role is self contained
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+The defaults can be found in `defaults/main.yml`.
+
+the ones of interest to you will be `chrisjohnson00_jackett_version` and `chrisjohnson00_jackett_user`
+ 
+ - `chrisjohnson00_jackett_version` is the version of [**Jackett**][1] to install.  This follows the versions found on the [**Jackett**][1] github project.  If you want to upgrade the version, just update the variable and re-run the role.
+ - `chrisjohnson00_jackett_user` is the user used to run the service, this user will be created if it doesn't exist.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - name: with yourself
+      hosts: all
       roles:
-         - { role: username.rolename, x: 42 }
+        - { role: chrisjohnson00.jackett, tags: ["jackett"]}
 
 License
 -------
 
-BSD
+MIT
 
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+ [1]: https://github.com/Jackett/Jackett
