@@ -13,14 +13,14 @@ services:
 
 before_install:
   # Pull container from Docker Hub.
-  - 'docker pull chrisjohnson00/ubuntu1604-ansible:latest'
+  - 'docker pull chrisjohnson00/ubuntu1604-ansible:1.0'
 
 script:
   # Create a random file to store the container ID.
   - container_id=$(mktemp)
 
   # Run container detached, with our role mounted inside.
-  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-role-jackett:ro ${run_opts} chrisjohnson00/ubuntu1604-ansible:latest "${init}" > "${container_id}"'
+  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-role-jackett:ro ${run_opts} chrisjohnson00/ubuntu1604-ansible:1.0 "${init}" > "${container_id}"'
     # Check the role/playbook's syntax.
   - >
     docker exec --tty "$(cat ${container_id})" env TERM=xterm
