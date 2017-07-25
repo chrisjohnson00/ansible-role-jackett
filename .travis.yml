@@ -3,8 +3,7 @@
 sudo: required
 
 env:
-  - distro: ubuntu1604
-    init: /lib/systemd/systemd
+  - init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 
@@ -14,20 +13,15 @@ services:
 
 before_install:
   # Pull container from Docker Hub.
-  - 'docker pull geerlingguy/docker-${distro}-ansible:latest'
+  - 'docker pull chrisjohnson00/ubuntu1604-ansible:latest'
 
 script:
   # Create a random file to store the container ID.
   - container_id=$(mktemp)
 
   # Run container detached, with our role mounted inside.
-  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-role-jackett:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
-  # the base docker doesn't include curl or timezone data, so adding it... not worth creating my own docker
-  - >
-    docker exec --tty "$(cat ${container_id})" env TERM=xterm apt-get update
-  - >
-    docker exec --tty "$(cat ${container_id})" env TERM=xterm apt-get install -yf curl tzdata
-  # Check the role/playbook's syntax.
+  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-role-jackett:ro ${run_opts} chrisjohnson00/ubuntu1604-ansible:latest "${init}" > "${container_id}"'
+    # Check the role/playbook's syntax.
   - >
     docker exec --tty "$(cat ${container_id})" env TERM=xterm
     ansible-playbook /etc/ansible/roles/ansible-role-jackett/tests/test.yml --syntax-check
