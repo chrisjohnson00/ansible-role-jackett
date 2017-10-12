@@ -19,6 +19,16 @@
     remote_src: True
   when: not jackett_install_location.stat.exists
 
+- name: "Add apt key for mono 5"
+  apt_key:
+    keyserver: hkp://keyserver.ubuntu.com:80
+    id: 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+
+- name: "adding repo for mono5"
+  apt_repository:
+    repo: deb http://download.mono-project.com/repo/ubuntu xenial main
+    state: present
+
 - name: Only run apt-get update if the last one is more than 3600 seconds ago
   apt:
     update_cache: yes
@@ -48,4 +58,32 @@
   when: jackett_systemctl_version.rc == 0
   notify:
     - jackett_reload_systemd
+    - restart_jackett
+
+- name: create configuration directory
+  file:
+    path: /home/{{ chrisjohnson00_jackett_user }}/.config/Jackett
+    state: directory
+    mode: 0755
+    owner: "{{ chrisjohnson00_jackett_user }}"
+    group: "{{ chrisjohnson00_jackett_user }}"
+
+- name: create configurations
+  template:
+    src: ServerConfig.json
+    dest: /home/{{ chrisjohnson00_jackett_user }}/.config/Jackett/ServerConfig-ansible.json
+    mode: 0644
+    owner: "{{ chrisjohnson00_jackett_user }}"
+    group: "{{ chrisjohnson00_jackett_user }}"
+  become: yes
+
+- name: move new config into place
+  copy:
+    src: /home/{{ chrisjohnson00_jackett_user }}/.config/Jackett/ServerConfig-ansible.json
+    dest: /home/{{ chrisjohnson00_jackett_user }}/.config/Jackett/ServerConfig.json
+    remote_src: yes
+    mode: 0644
+    owner: "{{ chrisjohnson00_jackett_user }}"
+    group: "{{ chrisjohnson00_jackett_user }}"
+  notify:
     - restart_jackett
