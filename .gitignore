@@ -1,2 +1,6 @@
 .DS_Store
 .idea/
+/ansible-role-jackett.iml
+/playbook.retry
+/roles/chrisjohnson00.jackett/
+/.vagrant/

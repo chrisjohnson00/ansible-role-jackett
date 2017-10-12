@@ -1,0 +1,12 @@
+{
+  "Port": {{ chrisjohnson00_jackett_port }},
+  "AllowExternal": {{ chrisjohnson00_jackett_allow_external }},
+  "APIKey": "{{ chrisjohnson00_jackett_api_key }}",
+  "AdminPassword": {% if chrisjohnson00_jackett_admin_password is equalto "null" %}null{% else %}"{{ chrisjohnson00_jackett_admin_password }}"{% endif %},
+  "InstanceId": "{{ chrisjohnson00_jackett_instance_id }}",
+  "BlackholeDir": {% if chrisjohnson00_jackett_blackhole_dir is equalto "null" %}""{% else %}"{{ chrisjohnson00_jackett_blackhole_dir }}"{% endif %},
+  "UpdateDisabled": {{ chrisjohnson00_jackett_update_disabled }},
+  "UpdatePrerelease": {{ chrisjohnson00_jackett_update_prerelease }},
+  "BasePathOverride": {% if chrisjohnson00_jackett_base_path_override is equalto "null" %}""{% else %}"{{ chrisjohnson00_jackett_base_path_override }}"{% endif %},
+  "OmdbApiKey": {% if chrisjohnson00_jackett_omdb_api_key is equalto "null" %}""{% else %}"{{ chrisjohnson00_jackett_omdb_api_key }}"{% endif %}
+}
