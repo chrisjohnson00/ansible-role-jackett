@@ -16,3 +16,6 @@ chrisjohnson00_jackett_update_disabled: "false"
 chrisjohnson00_jackett_update_prerelease: "false"
 chrisjohnson00_jackett_base_path_override: "" #use "" for no override
 chrisjohnson00_jackett_omdb_api_key: "" #use "" for no key
+# Indexers to load
+chrisjohnson00_jackett_load_indexers: false
+chrisjohnson00_jackett_indexer_path: "" #should end in a /
