@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/chrisjohnson00/ansible-role-jackett.svg?branch=master)](https://travis-ci.org/chrisjohnson00/ansible-role-jackett)
 
-Role Name
+Jackett
 =========
 
 This is an ansible role to install [**Jackett**][1] on Ubuntu 16.04

@@ -62,11 +62,22 @@
 
 - name: create configuration directory
   file:
-    path: /home/{{ chrisjohnson00_jackett_user }}/.config/Jackett
+    path: /home/{{ chrisjohnson00_jackett_user }}/.config/Jackett/Indexers
     state: directory
     mode: 0755
     owner: "{{ chrisjohnson00_jackett_user }}"
     group: "{{ chrisjohnson00_jackett_user }}"
+
+- name: move indexers into place
+  copy:
+    src: "{{ chrisjohnson00_jackett_indexer_path }}"
+    dest: /home/{{ chrisjohnson00_jackett_user }}/.config/Jackett/Indexers
+    mode: 0644
+    owner: "{{ chrisjohnson00_jackett_user }}"
+    group: "{{ chrisjohnson00_jackett_user }}"
+  when: chrisjohnson00_jackett_load_indexers
+  notify:
+      - restart_jackett
 
 - name: create configurations
   template:
@@ -87,3 +98,8 @@
     group: "{{ chrisjohnson00_jackett_user }}"
   notify:
     - restart_jackett
+
+- name: remove temp file
+  file:
+    path: /home/{{ chrisjohnson00_jackett_user }}/.config/Jackett/ServerConfig-ansible.json
+    state: absent
