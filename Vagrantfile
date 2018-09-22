@@ -6,7 +6,8 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-16.04"
+ #config.vm.box = "bento/ubuntu-16.04"
+ config.vm.box = "ubuntu/bionic64"
 
 #jacket
   config.vm.network "forwarded_port", guest: 9117, host: 9117
@@ -25,7 +26,7 @@ Vagrant.configure("2") do |config|
 config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yml"
     ansible.sudo = true
-    ansible.verbose = true #set this to true if you want to see all the output
+    ansible.verbose = false #set this to true if you want to see all the output
     ansible.limit = "all"
   end
 

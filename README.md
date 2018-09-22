@@ -3,7 +3,7 @@
 Jackett
 =========
 
-This is an ansible role to install [**Jackett**][1] on Ubuntu 16.04
+This is an ansible role to install [**Jackett**][1] on Ubuntu 16.04 or 18.04
 
 Requirements
 ------------
@@ -42,7 +42,7 @@ MIT
 Contributing
 -------
 
-I use [vagrant][2] to test my changes on my local, in order to do this effectivly I need to create a symbolic link so ansible knows how to find the role under `./roles/chrisjohnson00.jacket`, on my local I do something like `ln -s ~/IdeaProjects/ansible-role-jackett ~/IdeaProjects/ansible-role-jackett/roles/chrisjohnson00.jackett`.  If you do choose to contribute, thank you, please ensure the tests pass before submitting a PR.
+I use [vagrant][2] to test my changes on my local, in order to do this effectively I need to create a symbolic link so ansible knows how to find the role under `./roles/chrisjohnson00.jacket`, on my local I do something like `ln -s ~/IdeaProjects/ansible-role-jackett ~/IdeaProjects/ansible-role-jackett/roles/chrisjohnson00.jackett`.  If you do choose to contribute, thank you, please ensure the tests pass before submitting a PR.
 
 [1]: https://github.com/Jackett/Jackett
 [2]: http://www.vagrantup.com

@@ -4,5 +4,9 @@
 
 - name: with yourself
   hosts: all
+  gather_facts: False
+  pre_tasks:
+    - raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+    - setup: # aka gather_fact
   roles:
     - { role: chrisjohnson00.jackett, tags: ["jackett"]}

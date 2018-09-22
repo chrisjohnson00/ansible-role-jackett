@@ -24,10 +24,17 @@
     keyserver: hkp://keyserver.ubuntu.com:80
     id: 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 
-- name: "adding repo for mono5"
+- name: "adding repo for mono5 for ubuntu 16"
   apt_repository:
     repo: deb http://download.mono-project.com/repo/ubuntu xenial main
     state: present
+  when: ansible_distribution_major_version == "16"
+
+- name: "adding repo for mono5 for ubuntu 18"
+  apt_repository:
+    repo: deb http://download.mono-project.com/repo/ubuntu stable-bionic main
+    state: present
+  when: ansible_distribution_major_version == "18"
 
 - name: Only run apt-get update if the last one is more than 3600 seconds ago
   apt:

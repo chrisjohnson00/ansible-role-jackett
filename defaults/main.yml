@@ -2,7 +2,7 @@
 # defaults file for chrisjohnson00.jacket
 
 chrisjohnson00_jackett_packages: ["mono-devel","libcurl4-openssl-dev","ca-certificates-mono"]
-chrisjohnson00_jackett_version: "v0.9.41" # found on https://github.com/Jackett/Jackett/releases
+chrisjohnson00_jackett_version: "v0.10.198" # found on https://github.com/Jackett/Jackett/releases
 # jackett.service.ini values
 chrisjohnson00_jackett_no_update: "true" # since we want to manage the version upgrades/etc as part of the playbook, we disable auto updates
 chrisjohnson00_jackett_user: "jackett"
