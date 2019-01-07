@@ -43,7 +43,7 @@
 
 - name: install packages
   apt:
-    state: latest
+    state: present
     name: "{{ item }}"
   with_items: "{{ chrisjohnson00_jackett_packages }}"
 
